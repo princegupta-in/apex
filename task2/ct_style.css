@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.main-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contact-section, .todo-section {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input, textarea, select, button {
+  padding: 10px;
+  font-size: 15px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+}
+
+li {
+  background: #f1f1f1;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+li .task-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-priority {
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.Low { background-color: #28a745; }
+.Medium { background-color: #ffc107; color: #333; }
+.High { background-color: #dc3545; }
+
+.task-date {
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
+}
+
+@media (max-width: 800px) {
+  .main-container {
+    flex-direction: column;
+  }
+}

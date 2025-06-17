@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact & To-Do Page</title>
+  <link rel="stylesheet" href="ct_style.css" />
+</head>
+<body>
+  <div class="main-container">
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>Contact Info</h2>
+      <form id="contact-form">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="url" id="linkedin" placeholder="LinkedIn Profile URL" />
+        <input type="url" id="github" placeholder="GitHub Profile URL" />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <!-- To-Do Section -->
+    <section class="todo-section">
+      <h2>To-Do List <span id="task-count">(0 tasks)</span></h2>
+      <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="Task description..." required />
+        <select id="priority">
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+        <input type="date" id="due-date" />
+        <button type="submit">Add Task</button>
+      </form>
+      <ul id="todo-list"></ul>
+    </section>
+  </div>
+
+  <script src="ct_script.js"></script>
+</body>
+</html>

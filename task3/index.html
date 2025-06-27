@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="start-screen" class="screen">
+    <h1>Welcome to the Quiz Game!</h1>
+    <button id="start-btn">Start Quiz</button>
+  </div>
+
+  <div id="quiz-screen" class="screen" style="display:none;">
+    <div class="top-bar">
+      <div>Timer: <span id="timer">15</span>s</div>
+      <div>Score: <span id="score">0</span></div>
+      <div>Hints Left: <span id="hints">2</span></div>
+      <button id="hint-btn">Use Hint</button>
+    </div>
+    <div id="question"></div>
+    <div id="options"></div>
+    <div id="result"></div>
+    <div class="controls">
+      <button id="next-btn">Next Question</button>
+    </div>
+  </div>
+
+  <div id="round-complete-screen" class="screen" style="display:none;">
+    <div class="popup">
+      <h2>🎉 Congratulations! You completed Round <span id="round-num">1</span>!</h2>
+      <p>Your score so far: <span id="round-score">0</span></p>
+      <button id="start-round2-btn">Start Round 2</button>
+    </div>
+  </div>
+
+  <div id="final-score-screen" class="screen" style="display:none;">
+    <div class="popup">
+      <h2>🎉 Quiz Completed!</h2>
+      <p>Your final score is: <span id="final-score">0</span></p>
+      <button id="restart-btn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+

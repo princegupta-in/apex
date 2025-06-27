@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Product Listing</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --light-bg: #f4f7fb;
+      --card-bg: #fff;
+      --shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .cart-info {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .controls select, .controls input {
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reset-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .active-filters {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background-color: #e0f0ff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag span {
+      margin-left: 6px;
+      color: red;
+      cursor: pointer;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .price {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .rating {
+      color: #f39c12;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Modern Product Listing</h1>
+    <div class="cart-info">Cart Items: <span id="cartCount">0</span></div>
+
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search product...">
+      <div class="filters">
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+        </select>
+
+        <select id="priceFilter">
+          <option value="all">All Prices</option>
+          <option value="0-50">₹0 - ₹50</option>
+          <option value="51-100">₹51 - ₹100</option>
+          <option value="101-500">₹101 - ₹500</option>
+        </select>
+
+        <select id="sortBy">
+          <option value="default">Sort By</option>
+          <option value="price-asc">Price ↑</option>
+          <option value="price-desc">Price ↓</option>
+          <option value="rating-desc">Rating ↓</option>
+          <option value="rating-asc">Rating ↑</option>
+        </select>
+      </div>
+
+      <button class="reset-btn" onclick="resetFilters()">Reset Filters</button>
+    </div>
+
+    <div class="active-filters" id="activeFilters"></div>
+
+    <div class="product-list" id="productList"></div>
+  </div>
+
+  <script>
+    const products = [
+      { name: "Wireless Headphones", category: "electronics", price: 120, rating: 4.5 },
+      { name: "T-shirt", category: "clothing", price: 40, rating: 4.2 },
+      { name: "JavaScript Book", category: "books", price: 80, rating: 4.8 },
+      { name: "Smartphone", category: "electronics", price: 400, rating: 4.6 },
+      { name: "Jeans", category: "clothing", price: 90, rating: 4.3 },
+      { name: "Notebook", category: "books", price: 30, rating: 4.0 },
+      { name: "Bluetooth Speaker", category: "electronics", price: 150, rating: 4.4 },
+      { name: "Dress", category: "clothing", price: 110, rating: 4.7 },
+      { name: "Wireless Mouse", category: "electronics", price: 60, rating: 4.1 },
+      { name: "Python Programming", category: "books", price: 95, rating: 4.9 }
+    ];
+
+    let cart = [];
+
+    const productList = document.getElementById("productList");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const priceFilter = document.getElementById("priceFilter");
+    const sortBy = document.getElementById("sortBy");
+    const searchInput = document.getElementById("searchInput");
+    const activeFilters = document.getElementById("activeFilters");
+    const cartCount = document.getElementById("cartCount");
+
+    function displayProducts(list) {
+      productList.innerHTML = "";
+      list.forEach((p, index) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <h3>${p.name}</h3>
+          <p><strong>Category:</strong> ${capitalize(p.category)}</p>
+          <p class="price">₹${p.price}</p>
+          <p class="rating">⭐ ${p.rating}</p>
+          <button class="add-btn" onclick="addToCart(${index})">Add to Cart</button>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function getFilters() {
+      return {
+        category: categoryFilter.value,
+        price: priceFilter.value,
+        sort: sortBy.value,
+        search: searchInput.value.trim().toLowerCase()
+      };
+    }
+
+    function applyFilters() {
+      let result = [...products];
+      const filters = getFilters();
+      activeFilters.innerHTML = "";
+
+      if (filters.category !== "all") {
+        result = result.filter(p => p.category === filters.category);
+        addFilterTag("Category: " + capitalize(filters.category), () => {
+          categoryFilter.value = "all"; applyFilters();
+        });
+      }
+
+      if (filters.price !== "all") {
+        const [min, max] = filters.price.split("-").map(Number);
+        result = result.filter(p => p.price >= min && p.price <= max);
+        addFilterTag(`Price: ₹${min} - ₹${max}`, () => {
+          priceFilter.value = "all"; applyFilters();
+        });
+      }
+
+      if (filters.search) {
+        result = result.filter(p => p.name.toLowerCase().includes(filters.search));
+        addFilterTag(`Search: "${filters.search}"`, () => {
+          searchInput.value = ""; applyFilters();
+        });
+      }
+
+      switch (filters.sort) {
+        case "price-asc": result.sort((a, b) => a.price - b.price); break;
+        case "price-desc": result.sort((a, b) => b.price - a.price); break;
+        case "rating-asc": result.sort((a, b) => a.rating - b.rating); break;
+        case "rating-desc": result.sort((a, b) => b.rating - a.rating); break;
+      }
+
+      displayProducts(result);
+    }
+
+    function addFilterTag(text, onRemove) {
+      const tag = document.createElement("div");
+      tag.className = "tag";
+      tag.innerHTML = `${text} <span>✖</span>`;
+      tag.querySelector("span").addEventListener("click", onRemove);
+      activeFilters.appendChild(tag);
+    }
+
+    function resetFilters() {
+      categoryFilter.value = "all";
+      priceFilter.value = "all";
+      sortBy.value = "default";
+      searchInput.value = "";
+      applyFilters();
+    }
+
+    function addToCart(index) {
+      const product = products[index];
+      cart.push(product);
+      alert(`${product.name} added to cart!`);
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      cartCount.textContent = cart.length;
+    }
+
+    [categoryFilter, priceFilter, sortBy, searchInput].forEach(el => {
+      el.addEventListener("input", applyFilters);
+    });
+
+    applyFilters(); // Initial
+  </script>
+</body>
+</html>
+
+
+
+

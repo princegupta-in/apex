@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anusha Rokkala - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      color: #333;
+      line-height: 1.6;
+    }
+    header, footer {
+      background: #00bcd4;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    nav {
+      margin-top: 0.5rem;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #004d5f;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 3.5rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    h1, h2, h3 {
+      color: #1e1e2f;
+      margin-bottom: 1rem;
+    }
+    ul {
+      margin-top: 0.5rem;
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    .skill {
+      background: #00bcd4;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+    }
+    input, textarea {
+      margin-bottom: 1rem;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: #00bcd4;
+      outline: none;
+    }
+    button {
+      padding: 12px;
+      font-size: 1rem;
+      background: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0097a7;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      main {
+        padding: 1rem;
+      }
+      nav a {
+        display: inline-block;
+        margin: 10px 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Anusha Rokkala</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About Anusha Rokkala</h2>
+      <p>I’m a front-end developer passionate about crafting interactive, elegant, and responsive user interfaces. I focus on building real-world solutions through clean and efficient code, driven by curiosity and continuous learning.</p>
+      <h3>Skills</h3>
+      <div class="skills">
+        <div class="skill">HTML5</div>
+        <div class="skill">CSS3</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Responsive Design</div>
+        <div class="skill">Figma</div>
+        <div class="skill">APIs</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Anusha Rokkala's Projects</h2>
+
+      <h3>Quiz Game App</h3>
+      <p>An interactive two-round quiz game built using vanilla JavaScript, featuring a live timer, hint system, and dynamic feedback with popups.</p>
+      <ul>
+        <li>Randomized questions in each round</li>
+        <li>Live scoring and hint limitation</li>
+        <li>Responsive and engaging UI</li>
+      </ul>
+      <a href="#" target="_blank">Live Demo</a> | <a href="#" target="_blank">GitHub Code</a>
+
+      <h3>Responsive Portfolio Website</h3>
+      <p>A modern personal website that adapts seamlessly across devices using Flexbox, Grid, and media queries.</p>
+      <ul>
+        <li>Multi-section layout with smooth navigation</li>
+        <li>Mobile-first, responsive design</li>
+        <li>Elegant and professional UI</li>
+      </ul>
+      <a href="#" target="_blank">Live Demo</a> | <a href="#" target="_blank">GitHub Code</a>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Anusha Rokkala</h2>
+      <p>If you're looking to collaborate or have a project in mind, I’d love to hear from you!</p>
+      <ul>
+        <li><strong>Email:</strong> anusha@example.com</li>
+        <li><strong>Phone:</strong> +91-XXXXXXXXXX</li>
+        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/anusha">linkedin.com/in/anusha</a></li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/anusha">github.com/anusha</a></li>
+      </ul>
+
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formStatus" style="margin-top:10px;color:green;font-weight:500;"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Anusha Rokkala. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (name && email && message) {
+        document.getElementById('formStatus').textContent = "Thank you, " + name + ". Your message has been sent!";
+        this.reset();
+      } else {
+        document.getElementById('formStatus').textContent = "Please fill in all fields.";
+        document.getElementById('formStatus').style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
